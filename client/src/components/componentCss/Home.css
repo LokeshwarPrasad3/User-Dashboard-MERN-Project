@@ -1,0 +1,41 @@
+
+.home {
+  width: 100%;
+  height: calc(100vh - 130px);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  background: linear-gradient(
+    to right,
+    rgb(250, 246, 246) 48%,
+    white 50%,
+    white 100%
+  );
+  color: #000000;
+  font-size: 24px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+
+  align-items: center;
+}
+/* descriptoin of home when logged in */
+.span{
+  font-size: 1.5rem;
+  font-weight: lighter;
+}
+.welcome {
+  font-size: 1rem;
+  font-family: "bitter";
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+.message {
+  text-align: center;
+  font-size: 2.2rem;
+}
+@media (max-width: 700px) {
+  .message {
+    font-size: 2rem;
+  }
+}

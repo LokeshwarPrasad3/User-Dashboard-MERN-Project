@@ -1,0 +1,87 @@
+/* heading */
+.heading_edit_profile {
+  margin-left: 30px;
+}
+/* form */
+.edit_form_details {
+  position: absolute;
+  top: 15%;
+  left: 30%;
+  z-index: 2;
+
+  margin: auto;
+  display: flex;
+  width: 30rem;
+  flex-direction: column;
+  gap: 0.8rem;
+  background-color: rgb(243, 240, 236);
+  padding: 1rem 1.5rem 1.5rem 2rem;
+
+  transition: all 1s linear;
+  
+}
+/* edit basic details */
+.edit_basic_details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.6rem;
+}
+/* edit social media details */
+.social_media_details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.6rem;
+}
+/* all form inputs */
+.edit_form_input {
+  width: 100%;
+  padding: 0.5rem 0rem 0.5rem 0.3rem;
+  font-size: 1rem;
+}
+
+/* button submit */
+.edit_profile_submit_btn {
+  display: flex;
+  width: 100%;
+  justify-content: right;
+}
+.edit_submit_btn {
+  position: relative;
+  top: 1rem;
+  right: 1rem;
+  width: 8rem;
+  padding: 0.5rem 0.2rem;
+  font-size: 1.3rem;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  background: linear-gradient(
+    to right,
+    rgb(177, 109, 148),
+    rgb(103, 83, 139),
+    rgb(163, 89, 101)
+  );
+  cursor: pointer;
+}
+.edit_submit_btn:hover {
+  background: linear-gradient(
+    to right,
+    rgb(177, 91, 139),
+    rgb(104, 77, 153),
+    rgb(163, 72, 87)
+  );
+}
+
+/* when mobile size then input filed is small than window */
+@media (max-width: 600px) {
+  .edit_form_details {
+    width: 23rem;
+  }
+}
+@media (max-width: 600px) {
+  .edit_form_details {
+    left: 7%;
+  }
+}

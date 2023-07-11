@@ -1,0 +1,20 @@
+/* footer */
+footer {
+  margin: auto;
+  width: 100%;
+  border: 1px solid black;
+  height: 3rem;
+  background-color: #1e272e;
+}
+
+footer p {
+  line-height: 2.9rem;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #fff;
+}
+
+footer a {
+  text-decoration: none;
+  color: red;
+}

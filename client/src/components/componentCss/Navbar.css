@@ -1,0 +1,150 @@
+/* defining variable of colors */
+:root {
+  --main-bg: #1e272e;
+  --main-color: #0097e6;
+}
+
+/* navbar design */
+#navbar {
+  position: sticky;
+  top: 0px;
+  height: 80px;
+  box-shadow: 0px 0px 6px 0px red;
+  display: flex;
+  align-items: center;
+  min-width: 100%;
+  background-color: var(--main-bg);
+  color: white;
+  z-index: 2;
+}
+.nav_name {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgb(209, 156, 56);
+}
+#navbar a {
+  text-decoration: none;
+}
+/* h1 is heading of navbar */
+#navbar a h1 {
+  color: white;
+}
+/* this is navbar left heading  */
+#heading {
+  display: flex;
+  gap: 1.5vw;
+  align-items: center;
+  margin-left: 4vw;
+  cursor: pointer;
+}
+#heading h1 {
+  font-family: "signika negative";
+}
+/* this includes all navbar menu with ul */
+#menuBtns {
+  position: absolute;
+  right: 5vw;
+}
+
+nav ul {
+  z-index: 3;
+  display: flex;
+}
+/* icon which effect when responsive design */
+nav .menu-btn i {
+  display: none;
+  color: #fff;
+  font-size: 24px;
+}
+
+nav ul li {
+  list-style: none;
+  padding: 8px;
+}
+/* this is checkbox which use when responsive design */
+#click {
+  display: none;
+}
+/* design all anchor tag */
+nav ul li a {
+  text-decoration: none;
+  padding: 7px 9px;
+  cursor: pointer;
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 6px;
+  transition: all 0.4s ease;
+}
+
+nav ul li a:hover {
+  background-color: #f5dab1; /* Hover color */
+  color: black;
+}
+
+.nav-link.active {
+  background-color: rgb(221, 215, 215);
+  color: black;
+}
+
+/* responsive navbar */
+@media only screen and (max-width: 940px) {
+  #heading {
+    margin-left: 4vw;
+  }
+
+  #heading h1 {
+    margin-left: 0;
+  }
+
+  nav .menu-btn i {
+    display: block;
+  }
+
+  nav ul {
+    position: fixed;
+    top: 80px;
+    background-color: #111;
+    width: 100%;
+    display: block;
+    /* left: -100%; */
+    text-align: center;
+    transition: all 0.3s ease;
+    z-index: 1;
+  }
+
+  /* Apply styles when the checkbox is checked */
+  /* #click:checked ~ #menuBtns ul {
+    left: 0%;
+  }
+
+  #click:checked ~ .menu-btn i:before {
+    content: "\f00d";
+  } */
+
+  nav ul li {
+    margin: 14px 0px;
+  }
+
+  nav ul li a {
+    font-size: 22px;
+  }
+
+  #click {
+    display: block;
+    position: absolute;
+    right: 10vw;
+  }
+
+  #click {
+    display: none;
+  }
+
+  nav .menu-btn {
+    position: absolute;
+    right: 3vw;
+  }
+
+  #content h1 {
+    font-size: 1.6rem;
+  }
+}
