@@ -50,6 +50,7 @@ const App = () => {
           <Route path="*" element={<ErrorPage />} />
         </Routes>
         <Footer />
+        {/* <SuccessPopup/> */}
       </UserContext.Provider>
 
     </>

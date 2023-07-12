@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import './componentCss/Contact.css';
 // import Button from '@mui/material/Button';
 // import Tooltip from '@mui/material/Tooltip';
@@ -17,10 +17,18 @@ import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import Loader from './Loader';
 
+// import cookies from js-cookie
+import Cookies from 'js-cookie';
+
 // import host backend url
-import {host} from '../API/api';
+import { host } from '../API/api';
+import { UserContext } from '../App';
 
 const Contact = () => {
+    // here using UserContext which i created in app then i get all values of context
+    // eslint-disable-next-line
+    const { state, dispatch } = useContext(UserContext);
+
     // state which is control circular progress
     const [display, setDisplay] = useState('flex');
 
@@ -47,12 +55,16 @@ const Contact = () => {
                     Accept: "application/json",
                     "Content-Type": "application/json",
                     // send token via headers to authenticate in backend
-                    "token" : localStorage.getItem("jwtoken")
+                    "token": Cookies.get('jwtToken')
                 },
                 // including that for getting data
                 credentials: "include"
                 // not need body because only getting data from server not post (write in db)
             })
+
+            // dispatch is from useReducer defined in reducer folder, type:'user' and change state value by extra payload
+            // this chage display menu of navbar (home,about,contact,logout)
+            dispatch({ type: 'USER', payload: true });
 
             // hide loader 
             setDisplay('none');

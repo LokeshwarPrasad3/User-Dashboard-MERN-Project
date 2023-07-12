@@ -1,18 +1,25 @@
 
 // importing useEffect for calling function before rendering
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import './componentCss/About.css';
 import { Link, useNavigate } from 'react-router-dom';
 
 import MyImage from '../TempImg/imageLoader.jpg';
 import Loader from './Loader';
-import Popup from './Popup';
+import Popup from './EditPopup';
 // import EmptyImage from '../TempImg/empty-profile.png';
+
+// get js-cookie to use cookie
+import Cookies from 'js-cookie';
 
 // import host backend url
 import {host} from '../API/api';
+import { UserContext } from '../App';
 
 const About = () => {
+  // here using UserContext which i created in app then i get all values of context
+  // eslint-disable-next-line
+  const { state, dispatch } = useContext(UserContext);
 
   // state which is control circular progress
   const [display, setDisplay] = useState('flex');
@@ -52,12 +59,16 @@ const About = () => {
           Accept: "application/json",
           "Content-Type": "application/json",
           // send token via headers to authenticate in backend
-          "token" : localStorage.getItem("jwtoken")
+          "token" : Cookies.get('jwtToken')
         },
         // including that for  getting data
         credentials: "include"
         // not need body because only getting data from server not post (write in db)
       });
+
+      // dispatch is from useReducer defined in reducer folder, type:'user' and change state value by extra payload
+      // this chage display menu of navbar (home,about,contact,logout)
+      dispatch({ type: 'USER', payload: true });
 
       // when data is found for load then display
       setDisplay('none');
@@ -85,7 +96,7 @@ const About = () => {
       // console.log(err);
       navigate('/login');
     }
-  }, [navigate]);
+  }, [navigate,dispatch]);
 
   // before page render we authenticate that user can access about page or not
   useEffect(() => {

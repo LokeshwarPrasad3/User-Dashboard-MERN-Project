@@ -1,11 +1,18 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import './componentCss/Home.css';
 // import Loader from './Loader';
 
+// get js-cookie to set in cookie
+import Cookies from 'js-cookie';
+
 // import host backend url
-import {host} from '../API/api';
+import { host } from '../API/api';
+import { UserContext } from '../App';
 
 const Home = () => {
+  // here using UserContext which i created in app then i get all values of context
+  // eslint-disable-next-line
+  const { state, dispatch } = useContext(UserContext);
 
   // // state which is control circular progress
   // const [display, setDisplay] = useState('block');
@@ -26,12 +33,19 @@ const Home = () => {
           "Content-Type": "application/json",
           Accept: "application/json",
           // send token via headers to authenticate in backend
-          "token": localStorage.getItem("jwtoken")
+          "token": Cookies.get('jwtToken')
         },
         // including that for getting data
         credentials: "include"
         // not need body because only getting data from server not post (write in db)
       });
+
+      // if res is true mean user logged in
+      if (res.status !== 401) {
+        // dispatch is from useReducer defined in reducer folder, type:'user' and change state value by extra payload
+        // this chage display menu of navbar (home,about,contact,logout)
+        dispatch({ type: 'USER', payload: true });
+      }
 
       // // set display none when loaded data
       // setDisplay('none');
@@ -54,7 +68,7 @@ const Home = () => {
     catch (err) {
       console.log(err);
     }
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     showHomeData();
@@ -68,7 +82,7 @@ const Home = () => {
 
       <div className='home'>
         <p className='welcome' >WELCOME</p>
-        <h1 className='message' >
+        <div className='message' >
           {userData.name && userData.name.length > 0 ? (
             <>
               <h1 className="message">{userData.name}</h1>
@@ -76,7 +90,7 @@ const Home = () => {
               <span className="span">Happy, to see you back</span>
             </>
           ) : "We Are The MERN Developer"}
-        </h1>
+        </div>
         {/* <h1 className='message' ></h1> */}
       </div>
     </>

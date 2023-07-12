@@ -1,16 +1,22 @@
 import React, { useContext, useState } from 'react'
+
 import './componentCss/Login.css';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import GoogleIcon from '@mui/icons-material/Google';
+// import FacebookIcon from '@mui/icons-material/Facebook';
+// import GitHubIcon from '@mui/icons-material/GitHub';
+// import TwitterIcon from '@mui/icons-material/Twitter';
+// import GoogleIcon from '@mui/icons-material/Google';
 import PersonIcon from '@mui/icons-material/Person';
 import HttpsIcon from '@mui/icons-material/Https';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../App';
 import Loader from './Loader';
+
+// get js-cookie to set in cookie
+import Cookies from 'js-cookie';
+
+
 
 // import host backend url
 import { host } from '../API/api';
@@ -34,6 +40,7 @@ const Login = () => {
   // making state to store login
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
 
   // when user clicked login button then verify server and go to home page (account)
   const loginUser = async (e) => {
@@ -70,8 +77,14 @@ const Login = () => {
     // data convert to objec so authenticate
     const data = await res.json();
 
+    // getting token
+    // eslint-disable-next-line
+    const token = data.token;
     // now getting token and set in cookie
-    localStorage.setItem("jwtoken", data.token);
+    Cookies.set('jwtToken', data.token, { expires: 3, path: '/' });
+
+    // can set in localStorage
+    // localStorage.setItem("jwtoken", data.token);
 
     // if except success
     if (res.status !== 200) {
@@ -86,6 +99,7 @@ const Login = () => {
       // dispatch is from useReducer defined in reducer folder, type:'user' and change state value by extra payload
       // this chage display menu of navbar (home,about,contact,logout)
       dispatch({ type: 'USER', payload: true });
+      // {/* popup call when needed */}
       window.alert(data.message);
       navigate('/');
     }
@@ -95,6 +109,7 @@ const Login = () => {
 
   return (
     <>
+
       {/* this is loader when data is loading */}
       <Loader display={display} message="Fetching Data" />
 
@@ -108,7 +123,7 @@ const Login = () => {
           {/* left box contains  */}
           <div className="login_left_content">
             <img src="/Images/LoginImage.jpg" alt="" srcSet="" />
-            <Link className='text-lg text-blue-500' to="/signup">Create an Account</Link>
+            <Link className='text-lg text-blue-500' to="/register">Create an Account</Link>
           </div>
 
           {/* right box contains  */}
@@ -149,25 +164,25 @@ const Login = () => {
 
             {/* other login methods */}
             <div className="other_login">
-              <h1 className='text-xl' >OR login With :</h1>
+              <h3 className='another_login_heading'>OR login with <br /><strong style={{ fontSize: '1rem' }} >Google Facebook Github</strong></h3>
+
               <div className="login_methods">
-                {/* google icon */}
-                <div className="method_button bg-orange-600">
+                <button className="auth0Btn">Sign Up</button>
+              </div>
+
+              {/*<div className="method_button bg-orange-600">
                   <GoogleIcon className="" />
                 </div>
-                {/* twitter icon */}
                 <div className="method_button bg-blue-500">
                   <TwitterIcon className="" />
                 </div>
-                {/* gitHub icon */}
                 <div className="method_button bg-blue-900" >
                   <GitHubIcon className="" />
                 </div>
-                {/* facebook icon */}
                 <div className="method_button bg-blue-900" >
                   <FacebookIcon className="" />
                 </div>
-              </div>
+                */}
             </div>
           </div>
 

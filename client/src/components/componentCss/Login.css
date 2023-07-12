@@ -96,6 +96,9 @@
   gap: 20px;
   align-items: center;
 }
+.other_login .another_login_heading {
+  text-align: center;
+}
 /* giving look login_methods */
 .login_methods {
   position: relative;
@@ -104,6 +107,20 @@
   display: flex;
   gap: 15px;
 }
+.login_methods .auth0Btn {
+  padding: 3px 8px;
+  font-size: 1rem;
+  background: rgb(179, 48, 179);
+  color: white;
+  border: 1px solid rgb(238, 85, 174);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.login_methods .auth0Btn:hover {
+  background: rgb(192, 62, 192);
+}
+
+/* this is coommented in main */
 .method_button {
   border-radius: 5px;
   padding: 4px 5px;
@@ -113,6 +130,8 @@
 .method_button :hover {
   opacity: 0.8;
 }
+
+/* ************* */
 
 @media (max-width: 1516px) {
   .main_login_box {

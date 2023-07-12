@@ -19,7 +19,7 @@ const Navbar = () => {
         setIsOpen(false);
     };
 
-    
+
     // when clicked to checkbox aur menu btn which is three line
     const toggleMenu = () => {
         setIsOpen(!isOpen);

@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
-import './componentCss/Popup.css';
+import React, { useState } from 'react'
+import './componentCss/EditPopup.css';
 
-const Popup = (props) => {
+const EditPopup = (props) => {
     // prpops that close or remove filter
     const { setPopupVisible, setFilter } = props;
 
@@ -75,7 +75,7 @@ const Popup = (props) => {
                     onChange={handleEvent} name="github_link" placeholder='Github link' />
             </div> */}
 
-            
+
             <div className="edit_profile_submit_btn">
                 <input type="submit" className='edit_submit_btn' value="Change" onClick={saveData} />
             </div>
@@ -84,4 +84,4 @@ const Popup = (props) => {
     )
 }
 
-export default Popup
+export default EditPopup
