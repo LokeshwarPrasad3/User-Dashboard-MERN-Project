@@ -1,1 +1,1 @@
-export const host = "http://localhost:5000";
+export const host = "https://user-dashboard-mern-project.onrender.com";

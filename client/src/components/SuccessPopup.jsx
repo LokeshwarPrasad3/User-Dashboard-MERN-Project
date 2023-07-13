@@ -35,7 +35,7 @@ const SuccessPopup = (props) => {
                     <img className="popup_image" src={rightImage} alt="searching" />
                     <h2 className='main_message' >Thank You!</h2>
                     <p className='meesage_description' >{message}</p>
-                    <button className='ok_btn' type="button" onClick={closePopup}>OK</button>
+                    <button className='ok_btn' type="button" onClick={closePopup}>OKAY</button>
                 </div>
             </div>
         </>

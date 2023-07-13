@@ -46,7 +46,7 @@ Please note that this project is currently a work in progress. We will be adding
 
 ## Live Hosting
 
-The project is live hosted at [https://lokeshwar-mern.onrender.com]
+The project is live hosted at [https://user-dashboard-mern-project.onrender.com]
 
 ## Installation
 
