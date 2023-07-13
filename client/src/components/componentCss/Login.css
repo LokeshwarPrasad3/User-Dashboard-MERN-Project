@@ -12,6 +12,8 @@
   height: 100%;
   margin: 6% auto;
   width: 100%;
+
+  z-index: -1;
 }
 /* main content box */
 .main_login_box {

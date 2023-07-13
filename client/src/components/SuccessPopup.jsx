@@ -11,7 +11,7 @@ const SuccessPopup = (props) => {
 
     // popup style manage
     const [popupStyle, setPopupStyle] = useState({
-        visibility: 'hidden',
+        visibility: 'visible',
         top: '50%',
         transform: 'translate(-50%, -50%) scale(1)'
     });
@@ -32,7 +32,7 @@ const SuccessPopup = (props) => {
             {/* <button style={{ padding: '20px', backgroundColor: 'yellow' }} onClick={openPopup} >hey bro clicke me</button> */}
             <div id="popup_body">
                 <div style={popupStyle} className="popup_box" id="main_popup">
-                    <img className="popup_image" src={rightImage} alt="searching"/>
+                    <img className="popup_image" src={rightImage} alt="searching" />
                     <h2 className='main_message' >Thank You!</h2>
                     <p className='meesage_description' >{message}</p>
                     <button className='ok_btn' type="button" onClick={closePopup}>OK</button>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './componentCss/Signup.css';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
@@ -13,7 +13,7 @@ import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import Loader from './Loader';
 
 // import host backend url
-import {host} from '../API/api';
+import { host } from '../API/api';
 
 const Signup = () => {
 
@@ -29,6 +29,27 @@ const Signup = () => {
 
   // stored navigation 
   const navigate = useNavigate();
+
+  // for enter clicked enter then perform on button
+  const buttonRef = useRef(null);
+
+  // when load then call make button ref add event keydown
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter') {
+        buttonRef.current.click();
+      }
+    };
+
+    // adding event listeneer
+    document.addEventListener('keydown', handleKeyDown);
+
+    // if clicked then remove 
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    }
+
+  }, []);
 
   // making object that store user registration data 
   const [user, setUser] = useState({
@@ -224,7 +245,7 @@ const Signup = () => {
               {/* signup button */}
               <Tooltip className='signup_tooltip' title="signup">
                 <Button className='signup_button' style={{ fontSize: '17px', fontFamily: 'signika negative', textTransform: 'capitalize' }} variant='contained'
-                  onClick={PostData}
+                  onClick={PostData} ref={buttonRef}
                 >Signup
                 </Button>
               </Tooltip>

@@ -11,6 +11,7 @@ const cors = require('cors');
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
+// const path = require('path');
 // Your route handlers...
 
 // configure path of .env file
@@ -41,7 +42,10 @@ require('./db/conn');
 // requiring schema , models
 // const User = require('./model/userSchema');
 
-app.use(express.static(__dirname + '/public'));
+// app.use(express.static(__dirname + './Frontend/build'));
+// using build
+// app.use(express.static(path.join(__dirname, './Frontend/build')));
+
 
 // using that for getting data form of json
 app.use(express.json());

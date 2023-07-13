@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-// const DB = process.env.DATABASE;
-const DB = 'mongodb://127.0.0.1/UserDatabase';
+const DB = process.env.DATABASE;
+// const DB = 'mongodb://127.0.0.1/UserDatabase';
 
 
 mongoose.connect(DB, {

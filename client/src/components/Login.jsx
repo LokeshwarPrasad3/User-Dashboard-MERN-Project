@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 
 import './componentCss/Login.css';
 import Button from '@mui/material/Button';
@@ -9,7 +9,7 @@ import Tooltip from '@mui/material/Tooltip';
 // import GoogleIcon from '@mui/icons-material/Google';
 import PersonIcon from '@mui/icons-material/Person';
 import HttpsIcon from '@mui/icons-material/Https';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { UserContext } from '../App';
 import Loader from './Loader';
 
@@ -20,10 +20,12 @@ import Cookies from 'js-cookie';
 
 // import host backend url
 import { host } from '../API/api';
+import SuccessPopup from './SuccessPopup';
 
 // WE MAKE WHEN LOGIN USER THEN IT AUTOMATICALLY FETCH ALL DATA OF USER AND PUT INTO THEIR PAGE
 
 const Login = () => {
+
   // state which is control circular progress
   const [display, setDisplay] = useState('none');
 
@@ -34,16 +36,40 @@ const Login = () => {
   // eslint-disable-next-line
   const { state, dispatch } = useContext(UserContext);
 
-  // using navigate to navigating after login to main page
-  const navigate = useNavigate();
 
   // making state to store login
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // login successfull message store
+  const [message, setMessage] = useState('');
+  const [displayPopup, setDisplayPopup] = useState(false);
+
+  // for enter clicked enter then perform on button
+  const buttonRef = useRef(null);
+
+  // when load then call make button ref add event keydown
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter' ) {
+        buttonRef.current.click();
+      }
+    };
+
+    // adding event listeneer
+    document.addEventListener('keydown', handleKeyDown);
+
+    // if clicked then remove 
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    }
+
+  }, []);
+
 
   // when user clicked login button then verify server and go to home page (account)
   const loginUser = async (e) => {
+
 
     // when data is found for load then display
     setDisplay('flex');
@@ -96,19 +122,34 @@ const Login = () => {
     }
     // if all data is authenticate successfully
     else {
+      // set message state to login success message
+      setMessage(data.message);
+      // {/* popup call when needed */}
+      setDisplayPopup(true);
+
       // dispatch is from useReducer defined in reducer folder, type:'user' and change state value by extra payload
       // this chage display menu of navbar (home,about,contact,logout)
       dispatch({ type: 'USER', payload: true });
-      // {/* popup call when needed */}
-      window.alert(data.message);
-      navigate('/');
+      // window.alert(data.message);
+      // navigate('/');
     }
+
+
 
   }
 
 
+
   return (
     <>
+
+
+
+      {
+        displayPopup &&
+        <SuccessPopup message={message} navigateLink="/" />
+      }
+
 
       {/* this is loader when data is loading */}
       <Loader display={display} message="Fetching Data" />
@@ -156,7 +197,7 @@ const Login = () => {
               {/* login button */}
               <Tooltip className='login_tooltip' title="Login">
                 <Button className="login_button" style={{ fontSize: '17px', fontFamily: 'signika negative', textTransform: 'capitalize' }} variant='contained'
-                  onClick={loginUser}
+                  onClick={loginUser} ref={buttonRef}
                 >Log In
                 </Button>
               </Tooltip>
