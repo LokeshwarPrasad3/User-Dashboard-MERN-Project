@@ -1,4 +1,4 @@
-# Project Name: MERN Web App Development
+# Project Name: User-Dashboard-MERN-WebApp
 
 ## Table of Contents
 
@@ -6,8 +6,8 @@
 2. [Technologies Used](#technologies-used)
 3. [Features](#features)
 4. [Live Hosting](#live-hosting)
-5. [Installation](#installation)
-6. [Usage](#usage)
+5. [Planned Feature Roadmap](#planned-features-roadmap)
+6. [Installation](#installation)
 
 ## Description
 
@@ -24,12 +24,14 @@ Please note that this project is currently a work in progress. We will be adding
 ## Technologies Used
 
 - Frontend:
+
   - HTML
   - CSS
   - React
   - Tailwind CSS
 
 - Backend:
+
   - Node.js
   - Express.js
 
@@ -48,6 +50,21 @@ Please note that this project is currently a work in progress. We will be adding
 
 The project is live hosted at [https://user-dashboard-mern-project.onrender.com]
 
+## Planned Feature Roadmap:
+
+- Enhanced User Profile Customization
+- Real-time Chat Application
+- Versatile Message Sending
+- Implementation of End-to-End Encryption
+- Image Sharing in Chat
+- Efficient Message Management
+- Notifications and Alerts
+
+**Test Login Details:**
+
+- Username: test@gmail.com
+- Password: 12345
+
 ## Installation
 
 To run the project locally, follow these steps:
@@ -56,6 +73,7 @@ To run the project locally, follow these steps:
 2. The repository contains two directories:
 
    - **Server**: Contains the backend files.
+
      - Go to the `server` directory.
      - Run `app.js` using Node.js:
        ```
@@ -74,7 +92,3 @@ To run the project locally, follow these steps:
        ```
 
 Note: Make sure you have Node.js and npm (Node Package Manager) installed on your system.
-
-## Usage
-
-After following the installation steps, you can access the web app locally by opening your web browser and navigating to the specified URL.
